@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clickbait Detection of Tweets</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body style="background-image: url('https://t3.ftcdn.net/jpg/02/87/00/90/360_F_287009069_HhOZ7XD48257ZvfnswDu33zfZhCM0tu7.jpg'); background-size: cover;">
+    <div class="container">
+        <h1><a href="{{ url_for('home') }}">Clickbait Detection</a></h1>
+        <p>Welcome to our clickbait detection system for tweets. Enter a tweet to check if it's clickbait or not.</p>
+        <form action="{{ url_for('predict') }}" method="POST">
+            <div class="form-group">
+                <label for="tweet">Tweet:</label>
+                <input type="text" id="tweet" name="tweet" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Check</button>
+            </div>
+        </form>
+        {% if prediction %}
+        <div class="prediction">
+            <h1>Prediction Result:</h1>
+            {% if prediction=='True'%}
+                <p class="{{ prediction|lower }} clickbait">This tweet is clickbait</p>
+                {%else%} 
+                <p class="{{ prediction|lower }} not-clickbait">This tweet is not clickbait</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+
+    </div>
+    <footer>
+        <h3>Clickbait Detection using Deep Learning; 2023</h3>
+    </footer>
+</body>
+</html>
